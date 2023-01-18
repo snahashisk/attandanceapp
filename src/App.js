@@ -45,7 +45,6 @@ function App() {
       );
     });
 
-    console.log(reducedArray);
     setPresentStudentList(reducedArray);
   };
 
