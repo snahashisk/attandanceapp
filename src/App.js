@@ -30,6 +30,12 @@ function App() {
     { rollno: "CS/20/26", name: "Swarup Kumar Supakar" },
     { rollno: "CS/20/27", name: "Tofayel Molla" },
     { rollno: "CS/20/30", name: "Yogesh Summan" },
+    { rollno: "CS/21L/19", name: "Shreya Das" },
+    { rollno: "CS/21L/06", name: "Ekant Singh" },
+    { rollno: "EC/20/01", name: "Debjyoti Sanyal" },
+    { rollno: "EC/20/02", name: "Devjit Mondal" },
+    { rollno: "EC/20/03", name: "Gopal Kundu" },
+    { rollno: "EC/20/04", name: "Suvradip Maity" },
   ];
 
   const [presentStudents, setPresentStudents] = useState([]);
@@ -39,9 +45,9 @@ function App() {
     let count = 1;
     const reducedArray = presentStudents.map((presentStudents) => {
       return (
-        <p key={presentStudents.rollno}>
+        <span key={presentStudents.rollno}>
           {count++}. {presentStudents.name} ({presentStudents.rollno})
-        </p>
+        </span>
       );
     });
 
