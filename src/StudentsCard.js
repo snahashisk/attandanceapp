@@ -15,8 +15,9 @@ function StudentCard({ student, createList }) {
       dataname={student.name}
       onClick={handleClick}
       style={{
-        backgroundColor: isActive ? "#9BC53D" : "",
+        backgroundColor: isActive ? "#68CA6D" : "",
         color: isActive ? "white" : "",
+        border: isActive ? "none" : "",
       }}
     >
       <p>{student.name}</p>
