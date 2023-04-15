@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaCopy, FaWhatsapp } from "react-icons/fa";
 
 const StudentsList = () => {
   const students = [
@@ -56,6 +57,17 @@ const StudentsList = () => {
     }
   };
 
+  function shareOnWhatsApp() {
+    const newText = selectedStudents
+      .map(
+        (student, index) => `${index + 1}. ${student.name} (${student.rollno})`
+      )
+      .join("\n");
+    const message = encodeURIComponent(newText);
+    const whatsappLink = `https://wa.me/?text=${message}`;
+    window.open(whatsappLink, "_blank");
+  }
+
   return (
     <>
       <div className="flex flex-wrap gap-2 justify-center pt-8 pb-6">
@@ -92,12 +104,18 @@ const StudentsList = () => {
             <p>{student.name}</p>
           </div>
         ))}
-        <div className="flex justify-center">
+        <div className="flex justify-center gap-2 text-2xl">
           <button
-            className="bg-yellow-400 text-xl text-gray-800 px-4 py-2 rounded-md mt-5"
+            className="bg-yellow-400 text-gray-800 px-2 py-1 rounded-md mt-5"
             onClick={copyAttendance}
           >
-            Copy
+            <FaCopy />
+          </button>
+          <button
+            className="bg-yellow-400 text-gray-800 px-2 py-1 rounded-md mt-5"
+            onClick={shareOnWhatsApp}
+          >
+            <FaWhatsapp />
           </button>
         </div>
       </div>
