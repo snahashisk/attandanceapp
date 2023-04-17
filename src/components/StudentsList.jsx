@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaCopy, FaWhatsapp } from "react-icons/fa";
+import { FaCopy, FaWhatsapp, FaCheck } from "react-icons/fa";
 
 const StudentsList = () => {
   const students = [
@@ -29,8 +29,8 @@ const StudentsList = () => {
     { rollno: "CS/20/26", name: "Swarup Kumar Supakar" },
     { rollno: "CS/20/27", name: "Tofayel Molla" },
     { rollno: "CS/20/30", name: "Yogesh Summan" },
-    { rollno: "CS/21L/19", name: "Shreya Das" },
     { rollno: "CS/21L/06", name: "Ekant Singh" },
+    { rollno: "CS/21L/19", name: "Shreya Das" },
     { rollno: "EC/20/01", name: "Debajyoti Sanyal" },
     { rollno: "EC/20/02", name: "Devjit Mondal" },
     { rollno: "EC/20/03", name: "Gopal Kundu" },
@@ -38,8 +38,13 @@ const StudentsList = () => {
   ];
 
   const [selectedStudents, setSelectedStudents] = useState([]);
+
+  const sortedSelectedStudents = selectedStudents.sort((a, b) =>
+    a.rollno.localeCompare(b.rollno)
+  );
+
   const copyAttendance = () => {
-    const newText = selectedStudents
+    const newText = sortedSelectedStudents
       .map(
         (student, index) => `${index + 1}. ${student.name} (${student.rollno})`
       )
@@ -80,7 +85,7 @@ const StudentsList = () => {
             <div
               key={student.rollno}
               onClick={() => handleClick(student)}
-              className={`border w-4/5 flex border-gray-600 rounded-md overflow-hidden text-gray-200 ${
+              className={`border w-4/5 flex border-gray-600 rounded-md overflow-hidden text-gray-200 relative ${
                 isSelected ? "text-green-400" : ""
               }`}
             >
@@ -92,6 +97,13 @@ const StudentsList = () => {
               <div>
                 <h3>{student.name}</h3>
                 <p>{student.rollno}</p>
+              </div>
+              <div
+                className={`flex items-center justify-center absolute right-0 top-0 w-12 text-white bg-green-600 h-full ${
+                  isSelected ? "" : "hidden"
+                }`}
+              >
+                <FaCheck />
               </div>
             </div>
           );
